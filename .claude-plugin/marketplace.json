@@ -1,0 +1,13 @@
+{
+  "name": "agent-crew",
+  "description": "Agent orchestration rules and a live Agents pane for Claude Code",
+  "owner": {
+    "name": "Shubham Singh"
+  },
+  "plugins": [
+    {
+      "name": "agent-crew",
+      "source": "./"
+    }
+  ]
+}
