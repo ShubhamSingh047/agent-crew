@@ -1,7 +1,12 @@
 {
   "name": "agent-crew",
-  "version": "0.1.0",
-  "description": "Opus-orchestrated subagents with a live Agents pane: pixel critters per model, task, activity, time, tools, tokens and answer",
-  "author": { "name": "Shubham Singh" },
-  "types": "./types/index.d.ts"
+  "version": "0.2.0",
+  "description": "Opus-orchestrated subagents with a live Agents pane, a usage meter (context, rate limits, cost) and the crew theme",
+  "author": {
+    "name": "Shubham Singh"
+  },
+  "types": "./types/index.d.ts",
+  "experimental": {
+    "themes": "./themes"
+  }
 }

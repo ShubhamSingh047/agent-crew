@@ -19,8 +19,26 @@ export type AgentDetail = {
   answer?: string
 }
 
+export type UsageWindow = {
+  kind: string
+  percentUsed: number
+  resetsAt?: string
+}
+
+export type UsageSnapshot = {
+  context: { tokens?: number; window: number; percent?: number }
+  rateLimits: UsageWindow[]
+  cost?: number
+}
+
 declare module 'claude-code' {
   interface PluginState {
-    'agent-crew': { rows: AgentRow[]; frame: number; details: Record<string, AgentDetail> }
+    'agent-crew': {
+      rows: AgentRow[]
+      frame: number
+      details: Record<string, AgentDetail>
+      snapshot: UsageSnapshot | null
+      now: number
+    }
   }
 }

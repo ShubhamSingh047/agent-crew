@@ -9,6 +9,10 @@ A Claude Code plugin that makes subagent work visible and keeps it economical.
 - **Agents pane.** Every agent in one place: a small animated pixel critter per model while
   it runs, with its task, current activity, elapsed time and tool count; when it finishes,
   its duration, tokens used and answer.
+- **Usage meter** above the prompt: context used (tokens and session cost) and your 5-hour
+  and 7-day rate limits with reset times. Bar colours follow the active theme.
+- **The crew theme**: a dark purple theme, switched on the first time the plugin runs.
+  Change it any time with `/theme`; the plugin will not switch it back.
 - **Spinner words** per model: Skimming (Haiku), Crafting (Sonnet), Conducting (Opus),
   Seething (Fable).
 
@@ -21,7 +25,14 @@ A Claude Code plugin that makes subagent work visible and keeps it economical.
 
 ## Install
 
-In a terminal session of Claude Code:
+From a terminal:
+
+```bash
+claude plugin marketplace add ShubhamSingh047/agent-crew
+claude plugin install agent-crew@agent-crew
+```
+
+Or inside Claude Code:
 
 ```
 /plugin install agent-crew --marketplace ShubhamSingh047/agent-crew
