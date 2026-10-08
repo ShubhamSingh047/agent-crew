@@ -4,7 +4,7 @@ import type { AgentInfo, EngineInterface, Register } from 'claude-code'
 import type { AgentDetail, AgentRow, UsageSnapshot, UsageWindow } from '../types'
 import { miniCritter, MOODS, runs, toLines } from './critters'
 import type { Tier } from './critters'
-import { stripAttribution } from './attribution'
+import { creditsClaude, REFUSAL } from './attribution'
 import { POLICY } from './policy'
 
 // ---- Agents pane ----
@@ -453,10 +453,8 @@ export const register: Register = (on, options) => {
   })
 
   // Commits and PRs never credit Claude, on any machine with this plugin.
-  on('tool.call', { tool: 'Bash' }, ($, e, next) => {
-    const command = stripAttribution(e.command)
-    return command === e.command ? next(e) : next({ ...e, command })
-  }).catch(($, e, next) => next(e))
+  on('tool.call', { tool: 'Bash' }, ($, e, next) => (creditsClaude(e.command) ? { deny: REFUSAL } : next(e)))
+    .catch(($, e, next) => (next.called ? next(e) : creditsClaude(e.command) ? { deny: REFUSAL } : next(e)))
 
   registerPane(on, options)
   registerMeter(on, options)
