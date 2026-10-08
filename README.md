@@ -28,15 +28,15 @@ A Claude Code plugin that makes subagent work visible and keeps it economical.
 From a terminal:
 
 ```bash
-claude plugin marketplace add ShubhamSingh047/agent-crew
-claude plugin install agent-crew@agent-crew
+claude plugin install agent-crew --marketplace ShubhamSingh047/agent-crew
 ```
 
-Or inside Claude Code:
+Then open a new Claude session. `/agent-board` reopens the Agents pane if you close it.
 
-```
-/plugin install agent-crew --marketplace ShubhamSingh047/agent-crew
+## Update
+
+```bash
+claude plugin marketplace update agent-crew && claude plugin update agent-crew@agent-crew
 ```
 
-Answer `y` to add the marketplace, then pick the user scope. It is active right away.
-`/agent-board` reopens the Agents pane if you close it.
+Then open a new Claude session.
