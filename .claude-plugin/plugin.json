@@ -1,6 +1,6 @@
 {
   "name": "agent-crew",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Opus-orchestrated subagents with a live Agents pane, a usage meter (context, rate limits, cost) and the crew theme",
   "author": {
     "name": "Shubham Singh"

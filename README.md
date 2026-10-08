@@ -13,6 +13,9 @@ A Claude Code plugin that makes subagent work visible and keeps it economical.
   and 7-day rate limits with reset times. Bar colours follow the active theme.
 - **The crew theme**: a dark purple theme, switched on the first time the plugin runs.
   Change it any time with `/theme`; the plugin will not switch it back.
+- **No Claude credit in commits or PRs.** Any `Co-Authored-By: Claude` trailer or
+  "Generated with Claude Code" line is stripped from `git commit` and `gh pr` commands
+  before they run.
 - **Spinner words** per model: Skimming (Haiku), Crafting (Sonnet), Conducting (Opus),
   Seething (Fable).
 

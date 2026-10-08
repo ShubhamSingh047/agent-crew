@@ -1,5 +1,6 @@
 import { expect, test } from 'claude-code/testing'
 
+import { stripAttribution } from './attribution'
 import { critter, miniCritter, runs, toLines } from './critters'
 
 test('the pane still draws with no agents', async $ => {
@@ -26,4 +27,17 @@ test('the pane critter is half size: 12 wide, 3 lines', () => {
     expect(lines).toHaveLength(3)
     expect(lines.every(l => l.length === 12)).toBe(true)
   }
+})
+
+test('git commit and PR commands lose any Claude credit, other commands are untouched', () => {
+  const heredoc = `git commit -m "$(cat <<'EOF'\nFix bug\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nEOF\n)"`
+  expect(stripAttribution(heredoc)).not.toContain('Co-Authored-By')
+  expect(stripAttribution(heredoc)).toContain('Fix bug')
+  const inline = 'git commit -m "Fix bug\\n\\nCo-Authored-By: Claude <noreply@anthropic.com>"'
+  expect(stripAttribution(inline)).toBe('git commit -m "Fix bug"')
+  const pr = 'gh pr create --title T --body "Summary\\n\\n🤖 Generated with [Claude Code](https://claude.com/claude-code)"'
+  expect(stripAttribution(pr)).toBe('gh pr create --title T --body "Summary"')
+  const human = 'git commit -m "x\\n\\nCo-Authored-By: Priya <p@example.com>"'
+  expect(stripAttribution(human)).toBe(human)
+  expect(stripAttribution('echo Co-Authored-By: Claude')).toBe('echo Co-Authored-By: Claude')
 })
